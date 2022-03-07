@@ -15,5 +15,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "replace-in-file": "^6.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getyostack/create-yostack-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/getyostack/create-yostack-app/issues"
+  },
+  "homepage": "https://github.com/getyostack/create-yostack-app#readme"
 }
