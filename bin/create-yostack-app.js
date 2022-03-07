@@ -36,7 +36,7 @@ function createAppDirectory(callback) {
 }
 
 function copyTemplates(callback) {
-    exec(`cp -R ${templateDir}/* ${appDir}`, callback);
+    exec(`cp -R ${templateDir}/. ${appDir}`, callback);
 }
 
 function updateFiles(callback) {
