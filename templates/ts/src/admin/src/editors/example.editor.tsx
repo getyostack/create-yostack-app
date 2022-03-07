@@ -1,5 +1,5 @@
 import React from "react";
-import {EditorProps} from "@yostack/sdk-app-react";
+import {EditorProps} from "@yostack/sdk-admin-react";
 import {ExampleService} from "../example.service";
 
 /**

@@ -1,4 +1,4 @@
-import {App} from "@yostack/sdk-app-react";
+import {App} from "@yostack/sdk-admin-react";
 import {ExampleEditor} from "./editors/example.editor";
 import {ExampleService} from "./example.service";
 

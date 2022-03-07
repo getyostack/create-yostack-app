@@ -1,4 +1,4 @@
-import {Category, DataService, EcommerceService, Product} from "@yostack/sdk-app-react";
+import {Category, DataService, EcommerceService, Product} from "@yostack/sdk-admin-react";
 
 export class ExampleService implements DataService, EcommerceService {
 
