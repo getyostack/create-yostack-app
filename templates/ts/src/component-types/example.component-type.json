@@ -1,0 +1,53 @@
+{
+  "typeId": "{{appName}}:example-component",
+  "displayName": "Example Component",
+  "category": "Examples",
+  "description": "A example component type.",
+  "config": [
+    {
+      "name": "title",
+      "displayName": "Title",
+      "description": "The title to be displayed.",
+      "type": "string"
+    },
+    {
+      "name": "showDetails",
+      "displayName": "Show details",
+      "description": "Check to show details.",
+      "type": "boolean"
+    },
+    {
+      "name": "level",
+      "displayName": "Level",
+      "description": "Choose a level from the select options.",
+      "type": "string",
+      "defaultValue": "low",
+      "options": [
+        {
+          "name": "Low",
+          "value": "low"
+        },
+        {
+          "name": "High",
+          "value": "high"
+        }
+      ]
+    },
+    {
+      "name": "myCustomEditorValue",
+      "displayName": "Custom Editor",
+      "description": "An example of using a custom editor.",
+      "type": "string",
+      "editor": "{{appName}}:example-custom-editor"
+    }
+  ],
+  "defaultConfig": {
+    "title": "My Example",
+    "showDetails": true
+  },
+  "ui": {
+    "treeItemDisplay": {
+      "iconClass": "fa-solid fa-rocket"
+    }
+  }
+}

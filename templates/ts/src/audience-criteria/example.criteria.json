@@ -1,0 +1,21 @@
+{
+  "id": "{{appName}}:example",
+  "name": "Example Criteria",
+  "description": "An example audience criteria.",
+  "category": "Example",
+  "editor": [
+    "Visitor",
+    {
+      "ref": "isOrIsNotNegate"
+    },
+    "on a page which URL",
+    {
+      "field": "matchOperator",
+      "ref": "defaultStringMatchOperators"
+    },
+    {
+      "field": "url",
+      "type": "text"
+    }
+  ]
+}

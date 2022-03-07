@@ -1,0 +1,19 @@
+{
+  "name": "create-yostack-app",
+  "version": "0.0.1",
+  "description": "Creates a new YoStack starter app.",
+  "main": "src/index.js",
+  "bin": {
+    "create-yostack-app": "bin/create-yostack-app.js",
+    "release-code": "bin/release-code.js",
+    "update-dev": "bin/update-dev.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "YoStack",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "replace-in-file": "^6.3.2"
+  }
+}
