@@ -7,7 +7,7 @@ const args = process.argv.slice(2, process.argv.length);
 const appDir = process.cwd();
 
 if (args.length < 1) {
-    console.error("Missing development key argument.");
+    console.error("[ERROR] Missing development key argument.");
     process.exit(1);
 }
 
@@ -23,7 +23,7 @@ readFilesAndParseData(`${appDir}/src/component-types`, data.componentTypes);
 readFilesAndParseData(`${appDir}/src/audience-criteria`, data.audienceCriteria);
 
 if (hasErrors) {
-    console.error("Update aborted due to errors.");
+    console.error("[ERROR] Update aborted due to errors.");
     process.exit(1);
 }
 
@@ -55,7 +55,7 @@ function readFilesAndParseData(path, dataArray) {
         fileData = readFiles(path);
     } catch (err) {
         hasErrors = true;
-        console.error(`Failed to read one or more files in directory ${path}`, err);
+        console.error(`[ERROR] Failed to read one or more files in directory ${path}`, err);
         return;
     }
 
@@ -65,7 +65,7 @@ function readFilesAndParseData(path, dataArray) {
             dataArray.push(json);
         } catch (err) {
             hasErrors = true;
-            console.error(`Failed to JSON parse file ${path}/${filename}`, err);
+            console.error(`[ERROR] Failed to JSON parse file ${path}/${filename}`, err);
         }
     }
 }

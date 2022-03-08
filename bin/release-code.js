@@ -7,7 +7,7 @@ const args = process.argv.slice(2, process.argv.length);
 const appDir = process.cwd();
 
 if (args.length < 2) {
-    console.error("Missing arguments.");
+    console.error("[ERROR] Missing arguments.");
     process.exit(1);
 }
 
@@ -38,7 +38,7 @@ async function run() {
     try {
         sendData();
     } catch (err) {
-        console.error('Release request failed.', err);
+        console.error('[ERROR] Release request failed.', err);
         process.exit(1);
     }
 }

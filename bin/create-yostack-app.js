@@ -14,7 +14,7 @@ if (!args.length) {
 const appName = args[0];
 
 if (appName.indexOf(' ') !== -1) {
-    console.log('App name cannot contain spaces.');
+    console.log('[ERROR] App name cannot contain spaces.');
     process.exit(1);
 }
 
@@ -63,9 +63,8 @@ function updateFiles(callback) {
         for (const opt of options) {
             replace.sync(opt);
         }
-    }
-    catch (error) {
-        console.error('Error occurred:', error);
+    } catch (error) {
+        console.error('[ERROR] Error occurred:', error);
         process.exit(1);
     }
     callback();
@@ -74,9 +73,9 @@ function updateFiles(callback) {
 function npmInstall(callback) {
     console.log('Created app directory');
     console.log('Installing dependencies...');
-    execSync(`npm ci`, { cwd: appDir });
-    execSync(`npm ci`, { cwd: adminDir });
-    execSync(`npm ci`, { cwd: frontendDir });
+    execSync(`npm ci`, { cwd: appDir, stdio: ['pipe', 'ignore', 'pipe'] });
+    execSync(`npm ci`, { cwd: adminDir, stdio: ['pipe', 'ignore', 'pipe'] });
+    execSync(`npm ci`, { cwd: frontendDir, stdio: ['pipe', 'ignore', 'pipe'] });
     console.log('Installed dependencies');
     callback();
 }
