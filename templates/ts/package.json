@@ -7,9 +7,9 @@
     "watch": "rollup -c -w",
     "serve": "rollup -c -w --environment mode:dev",
     "package": "npm run build && node tools/tar.js",
-    "dev-update": "node tools/dev-update.js",
-    "public-release": "npm run build && node tools/release.js public",
-    "custom-release": "npm run build && node tools/release.js custom"
+    "dev-update": "npx -p create-yostack-app update-dev",
+    "public-release": "npm run build && npx -p create-yostack-app release-code public",
+    "custom-release": "npm run build && npx -p create-yostack-app release-code custom"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
