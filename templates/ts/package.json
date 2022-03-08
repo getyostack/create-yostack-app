@@ -7,9 +7,9 @@
     "watch": "rollup -c -w",
     "serve": "rollup -c -w --environment mode:dev",
     "package": "npm run build && node tools/tar.js",
-    "dev-update": "npx -p create-yostack-app update-dev",
-    "public-release": "npm run build && npx -p create-yostack-app release-code public",
-    "custom-release": "npm run build && npx -p create-yostack-app release-code custom"
+    "update-dev": "npx -p yostack-update-dev",
+    "public-release": "npm run build && npx yostack-release-code public",
+    "custom-release": "npm run build && npx -p yostack-release-code custom"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
@@ -17,6 +17,7 @@
     "@rollup/plugin-node-resolve": "^13.1.3",
     "@rollup/plugin-typescript": "^8.3.0",
     "@rollup/plugin-virtual": "^2.0.3",
+    "create-yostack-app": ">=0.0.3",
     "lerna": "^4.0.0",
     "postcss": "^8.4.5",
     "rollup": "^2.63.0",
