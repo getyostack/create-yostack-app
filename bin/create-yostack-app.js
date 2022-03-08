@@ -44,10 +44,12 @@ function updateFiles(callback) {
         {
             files: [
                 `${appDir}/package.json`,
+                `${appDir}/package-lock.json`,
                 `${appDir}/src/admin/package.json`,
                 `${appDir}/src/admin/package-lock.json`,
                 `${appDir}/src/admin/src/index.ts`,
                 `${appDir}/src/frontend/package.json`,
+                `${appDir}/src/frontend/package-lock.json`,
                 `${appDir}/src/frontend/src/index.ts`,
                 `${appDir}/src/frontend/src/components/example.component.tsx`,
                 `${appDir}/src/component-types/example.component-type.json`,
@@ -73,8 +75,8 @@ function npmInstall(callback) {
     console.log('Created app directory');
     console.log('Installing dependencies...');
     execSync(`npm ci`, { cwd: appDir });
-    execSync(`npm install`, { cwd: adminDir });
-    execSync(`npm install`, { cwd: frontendDir });
+    execSync(`npm ci`, { cwd: adminDir });
+    execSync(`npm ci`, { cwd: frontendDir });
     console.log('Installed dependencies');
     callback();
 }
