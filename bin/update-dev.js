@@ -85,7 +85,7 @@ function sendData() {
     const requestOptions = {
         hostname: inDevMode ? 'localhost' : 'api.yostack.com',
         port: inDevMode ? 4005 : 443,
-        path: '/api/1/apps/deploy',
+        path: '/public/api/1/apps/update-dev',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -97,16 +97,28 @@ function sendData() {
 
     const req = protocol.request(requestOptions, (res) => {
         const statusCode = res.statusCode;
-
-        if (statusCode !== 200) {
-            console.error(`[ERROR] Request failed with status code ${statusCode}`);
-        } else {
-            console.log('Update successful');
-        }
-
         res.setEncoding('utf8');
-        res.on('data', (chunk) => { /* do nothing */ });
-        res.on('end', () => { /* do nothing */ });
+
+        const chunks = [];
+        res.on('data', (chunk) => {
+            chunks.push(chunk);
+        });
+
+        res.on('end', () => {
+            const responseContent = Buffer.from(chunks.join()).toString();
+            if (statusCode === 200) {
+                const result = JSON.parse(responseContent);
+                if (result.success) {
+                    console.log('Update successful');
+                } else {
+                    console.log('Update failed with errors');
+                    console.log(JSON.stringify(result, null, 2));
+                }
+            } else {
+                console.error(`[ERROR] Request failed with status code ${statusCode}`);
+                console.log(responseContent);
+            }
+        });
     });
 
     req.on('error', (err) => {

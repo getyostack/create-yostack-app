@@ -1,4 +1,5 @@
 {
+  "@type": "@yostack/componentType",
   "typeId": "{{appName}}:example-component",
   "displayName": "Example Component",
   "category": "Examples",
