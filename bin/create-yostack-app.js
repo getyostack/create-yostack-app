@@ -73,9 +73,9 @@ function updateFiles(callback) {
 function npmInstall(callback) {
     console.log('Created app directory');
     console.log('Installing dependencies...');
-    execSync(`npm ci`, { cwd: appDir, stdio: ['pipe', 'ignore', 'pipe'] });
-    execSync(`npm ci`, { cwd: adminDir, stdio: ['pipe', 'ignore', 'pipe'] });
-    execSync(`npm ci`, { cwd: frontendDir, stdio: ['pipe', 'ignore', 'pipe'] });
+    execSync(`npm install --force`, { cwd: appDir, stdio: ['pipe', 'ignore', 'pipe'] });
+    execSync(`npm install --force`, { cwd: adminDir, stdio: ['pipe', 'ignore', 'pipe'] });
+    execSync(`npm install --force`, { cwd: frontendDir, stdio: ['pipe', 'ignore', 'pipe'] });
     console.log('Installed dependencies');
     callback();
 }
