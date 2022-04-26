@@ -1,6 +1,7 @@
 import {App} from "@yostack/sdk-admin-react";
 import {ExampleEditor} from "./editors/example.editor";
 import {ExampleService} from "./example.service";
+import "./scss/main.scss";
 
 export const app: App<Settings> = {
     supports: {

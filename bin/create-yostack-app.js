@@ -73,6 +73,7 @@ function updateFiles(callback) {
 function npmInstall(callback) {
     console.log('Created app directory');
     console.log('Installing dependencies...');
+    // TODO Probably replace with "npm ci" once dependencies aren't changing as much. Will require a package.lock.json.
     execSync(`npm install --force`, { cwd: appDir, stdio: ['pipe', 'ignore', 'pipe'] });
     execSync(`npm install --force`, { cwd: adminDir, stdio: ['pipe', 'ignore', 'pipe'] });
     execSync(`npm install --force`, { cwd: frontendDir, stdio: ['pipe', 'ignore', 'pipe'] });
