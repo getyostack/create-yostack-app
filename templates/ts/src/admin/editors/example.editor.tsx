@@ -27,17 +27,13 @@ import {ExampleService} from "../example.service";
  *  - updateValue {function}:   A function that accepts a new value as parameter.
  *  - updateConfig {function}:  A function that accepts a configuration object as parameter and, thus, can be
  *                              used to update multiple configuration fields at once.
- *  - service {object}:         An instance of the app's service, if the app provides one. This allows the editor to
+ *  - appService {object}:      An instance of the app's service, if the app provides one. This allows the editor to
  *                              take advantage of app-specific functionality, such as the ability to fetch data from
  *                              an API.
  */
 export function ExampleEditor(props: EditorProps<ExampleService>) {
 
-    const value = props.value;
-    const config = props.config;
-    const updateValue = props.updateValue;
-    const updateConfig = props.updateConfig;
-    const service = props.appService;
+    const {value, config, updateValue, updateConfig, appService} = props;
 
     const onClick = () => {
         updateValue('some value');

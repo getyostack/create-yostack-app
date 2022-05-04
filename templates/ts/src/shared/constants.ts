@@ -1,0 +1,1 @@
+export const exampleDataProviderId = '{{appName}}/example-data-provider';

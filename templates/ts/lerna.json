@@ -1,7 +1,0 @@
-{
-  "packages": [
-    "src/admin",
-    "src/frontend"
-  ],
-  "version": "1.0.0"
-}

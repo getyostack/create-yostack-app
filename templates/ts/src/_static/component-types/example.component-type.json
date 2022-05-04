@@ -1,6 +1,5 @@
 {
-  "@type": "@yostack/componentType",
-  "typeId": "{{appName}}:example-component",
+  "typeId": "{{appName}}/example-component",
   "displayName": "Example Component",
   "category": "Examples",
   "description": "A example component type.",
@@ -39,7 +38,7 @@
       "displayName": "Custom Editor",
       "description": "An example of using a custom editor.",
       "type": "string",
-      "editor": "{{appName}}:example-custom-editor"
+      "editor": "{{appName}}/example-config-field-editor"
     }
   ],
   "defaultConfig": {

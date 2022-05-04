@@ -9,20 +9,20 @@ interface Props extends BaseComponentProps {
 }
 
 export const ExampleComponent: React.FC<Props> = (props) => {
+    const {title, showDetails} = props;
 
-    // props contains the component configuration
-    const title = props.title;
-    const showDetails = props.showDetails;
-
+    // The outer tag should always apply the extra element props, as shown below.
+    // This will add attributes, such as [data-cid], which are important for the
+    // admin content editor and other functionality.
     return (
         <div {...props.$extra?.elProps('my-example-component-class')}>
             <h3>{{appName}} example component</h3>
             <h4>{title}</h4>
-            {showDetails ? (
+            {showDetails &&
                 <div className="my-example-details">
                     Showing details
                 </div>
-            ) : null}
+            }
         </div>
     );
 }

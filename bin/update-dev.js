@@ -19,8 +19,10 @@ const data = {
 };
 let hasErrors = false;
 
-readFilesAndParseData(`${appDir}/src/component-types`, data.componentTypes);
-readFilesAndParseData(`${appDir}/src/audience-criteria`, data.audienceCriteria);
+const staticDir = `${appDir}/src/_static`;
+
+readFilesAndParseData(`${staticDir}/component-types`, data.componentTypes);
+readFilesAndParseData(`${staticDir}/audience-criteria`, data.audienceCriteria);
 
 if (hasErrors) {
     console.error("[ERROR] Update aborted due to errors.");

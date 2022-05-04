@@ -6,21 +6,20 @@
     "build": "webpack --mode production",
     "serve": "serve dist -p 5050",
     "clean": "rm -rf dist",
-    "bootstrap": "lerna bootstrap",
     "update-dev": "npx yostack-update-dev",
     "public-release": "npm run build && npx yostack-release-code public",
     "custom-release": "npm run build && npx yostack-release-code custom"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-modal": "^3.14.4"
+    "@yostack/sdk-admin-react": ">=0.0.1",
+    "@yostack/sdk-frontend-react": ">=0.0.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "@types/react-modal": "^3.13.1",
-    "create-yostack-app": ">=0.0.7",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
     "css-loader": "^6.7.1",
-    "lerna": "^4.0.0",
     "sass": "^1.51.0",
     "sass-loader": "^12.6.0",
     "serve": "^13.0.2",

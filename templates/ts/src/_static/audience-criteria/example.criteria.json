@@ -1,6 +1,5 @@
 {
-  "@type": "@yostack/audienceCriteria",
-  "id": "{{appName}}:example",
+  "id": "{{appName}}/example-audience-criteria",
   "name": "Example Criteria",
   "description": "An example audience criteria.",
   "category": "Example",

@@ -2,84 +2,98 @@ const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies;
 
-module.exports = {
-    entry: './src/frontend/src/index.ts',
-    mode: 'development', // 'production'
-    target: 'web',
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-        ],
+const sharedModuleFederationConfig = {
+    react: {
+        requiredVersion: deps.react,
+        import: 'react', // the "react" package will be used a provided and fallback module
+        shareKey: 'react', // under this name the shared module will be placed in the share scope
+        shareScope: 'default', // share scope with this name will be used
+        singleton: true, // only a single version of the shared module is allowed
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+    'react-dom': {
+        requiredVersion: deps['react-dom'],
+        singleton: true, // only a single version of the shared module is allowed
     },
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist'),
+    'react-modal': {
+        requiredVersion: deps['react-modal'],
+        singleton: true, // only a single version of the shared module is allowed
     },
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
+};
+
+module.exports = (env, argv) => {
+    const mode = argv.mode || 'development';
+
+    return {
+        entry: './src/frontend/index.ts',
+        mode: mode,
+        target: 'web',
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.s[ac]ss$/i,
+                    use: [
+                        "style-loader",
+                        "css-loader",
+                        "sass-loader",
+                    ],
+                },
+            ],
         },
-        port: 5050,
-        allowedHosts: 'all',
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-        }
-    },
-    plugins: [
-        // Create frontend remote app
-        new ModuleFederationPlugin({
-            name: 'yostackApp',
-            filename: 'yostackFrontendApp.js',
-            exposes: {
-                './App': './src/frontend/src/index',
+        resolve: {
+            extensions: ['.tsx', '.ts', '.js'],
+        },
+        output: {
+            filename: 'main.js',
+            path: path.resolve(__dirname, 'dist'),
+        },
+        devServer: {
+            static: {
+                directory: path.join(__dirname, 'dist'),
             },
-            shared: {
-                react: {
-                    requiredVersion: deps.react,
-                    import: 'react', // the "react" package will be used a provided and fallback module
-                    shareKey: 'react', // under this name the shared module will be placed in the share scope
-                    shareScope: 'default', // share scope with this name will be used
-                    singleton: true, // only a single version of the shared module is allowed
+            port: 5050,
+            allowedHosts: 'all',
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+                "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+            }
+        },
+        plugins: [
+            // Create frontend remote app
+            new ModuleFederationPlugin({
+                name: 'yostackApp',
+                filename: 'yostackFrontendApp.js',
+                exposes: {
+                    './App': './src/frontend/index',
                 },
-                'react-dom': {
-                    requiredVersion: deps['react-dom'],
-                    singleton: true, // only a single version of the shared module is allowed
+                shared: {
+                    ...sharedModuleFederationConfig,
+                    '@yostack/sdk-frontend-react': {
+                        requiredVersion: deps['@yostack/sdk-frontend-react'],
+                        singleton: true,
+                    },
                 },
-                'react-modal': {
-                    requiredVersion: deps['react-modal'],
-                    singleton: true, // only a single version of the shared module is allowed
+            }),
+            // Create admin remote app
+            new ModuleFederationPlugin({
+                name: 'yostackAdminApp',
+                filename: 'yostackAdminApp.js',
+                exposes: {
+                    './App': './src/admin/index',
                 },
-            },
-        }),
-        // Create admin remote app
-        new ModuleFederationPlugin({
-            name: 'yostackAdminApp',
-            filename: 'yostackAdminApp.js',
-            exposes: {
-                './App': './src/admin/src/index',
-            },
-            shared: {
-                react: {
-                    requiredVersion: deps.react,
-                    import: 'react', // the "react" package will be used a provided and fallback module
-                    shareKey: 'react', // under this name the shared module will be placed in the share scope
-                    shareScope: 'default', // share scope with this name will be used
-                    singleton: true, // only a single version of the shared module is allowed
+                shared: {
+                    ...sharedModuleFederationConfig,
+                    '@yostack/sdk-admin-react': {
+                        requiredVersion: deps['@yostack/sdk-admin-react'],
+                        singleton: true,
+                    },
                 },
-                'react-dom': {
-                    requiredVersion: deps['react-dom'],
-                    singleton: true, // only a single version of the shared module is allowed
-                },
-            },
-        }),
-    ],
+            }),
+        ],
+    };
 };

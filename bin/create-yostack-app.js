@@ -19,8 +19,6 @@ if (appName.indexOf(' ') !== -1) {
 }
 
 const appDir = `${cwd}/${appName}`;
-const adminDir = `${appDir}/src/admin`;
-const frontendDir = `${appDir}/src/frontend`;
 const templateDir = `${scriptDirPath}/../templates/ts`;
 
 createAppDirectory(
@@ -45,15 +43,12 @@ function updateFiles(callback) {
             files: [
                 `${appDir}/package.json`,
                 `${appDir}/package-lock.json`,
-                `${appDir}/src/admin/package.json`,
-                `${appDir}/src/admin/package-lock.json`,
-                `${appDir}/src/admin/src/index.ts`,
-                `${appDir}/src/frontend/package.json`,
-                `${appDir}/src/frontend/package-lock.json`,
-                `${appDir}/src/frontend/src/index.ts`,
-                `${appDir}/src/frontend/src/components/example.component.tsx`,
-                `${appDir}/src/component-types/example.component-type.json`,
-                `${appDir}/src/audience-criteria/example.criteria.json`,
+                `${appDir}/src/_static/component-types/example.component-type.json`,
+                `${appDir}/src/_static/audience-criteria/example.criteria.json`,
+                `${appDir}/src/admin/index.ts`,
+                `${appDir}/src/frontend/index.ts`,
+                `${appDir}/src/frontend/components/example.component.tsx`,
+                `${appDir}/src/shared/constants.ts`,
             ],
             from: /{{appName}}/g,
             to: appName
@@ -75,8 +70,6 @@ function npmInstall(callback) {
     console.log('Installing dependencies...');
     // TODO Probably replace with "npm ci" once dependencies aren't changing as much. Will require a package.lock.json.
     execSync(`npm install --force`, { cwd: appDir, stdio: ['pipe', 'ignore', 'pipe'] });
-    execSync(`npm install --force`, { cwd: adminDir, stdio: ['pipe', 'ignore', 'pipe'] });
-    execSync(`npm install --force`, { cwd: frontendDir, stdio: ['pipe', 'ignore', 'pipe'] });
     console.log('Installed dependencies');
     callback();
 }

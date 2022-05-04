@@ -1,9 +1,0 @@
-{
-  "name": "@{{appName}}/frontend",
-  "private": true,
-  "dependencies": {
-    "@yostack/sdk-frontend-react": "^0.0.6"
-  },
-  "devDependencies": {
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "name": "@{{appName}}/admin",
-  "private": true,
-  "dependencies": {
-    "@yostack/sdk-admin-react": "^0.0.1"
-  }
-}
