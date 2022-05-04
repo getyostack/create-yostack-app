@@ -11,8 +11,8 @@
     "custom-release": "npm run build && npx yostack-release-code custom"
   },
   "dependencies": {
-    "@yostack/sdk-admin-react": ">=0.0.2",
-    "@yostack/sdk-frontend-react": ">=0.0.7",
+    "@yostack/sdk-admin-react": ">=0.0.3",
+    "@yostack/sdk-frontend-react": ">=0.0.8",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
