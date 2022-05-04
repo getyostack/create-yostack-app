@@ -1,27 +1,24 @@
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
-const deps = require('./package.json').dependencies;
 
 const sharedModuleFederationConfig = {
     react: {
-        requiredVersion: deps.react,
         import: 'react', // the "react" package will be used a provided and fallback module
         shareKey: 'react', // under this name the shared module will be placed in the share scope
         shareScope: 'default', // share scope with this name will be used
         singleton: true, // only a single version of the shared module is allowed
     },
     'react-dom': {
-        requiredVersion: deps['react-dom'],
         singleton: true, // only a single version of the shared module is allowed
     },
     'react-modal': {
-        requiredVersion: deps['react-modal'],
         singleton: true, // only a single version of the shared module is allowed
     },
 };
 
 module.exports = (env, argv) => {
     const mode = argv.mode || 'development';
+    const port = argv.port || 5050;
 
     return {
         entry: './src/frontend/index.ts',
@@ -55,7 +52,7 @@ module.exports = (env, argv) => {
             static: {
                 directory: path.join(__dirname, 'dist'),
             },
-            port: 5050,
+            port: port,
             allowedHosts: 'all',
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -74,7 +71,6 @@ module.exports = (env, argv) => {
                 shared: {
                     ...sharedModuleFederationConfig,
                     '@yostack/sdk-frontend-react': {
-                        requiredVersion: deps['@yostack/sdk-frontend-react'],
                         singleton: true,
                     },
                 },
@@ -89,7 +85,6 @@ module.exports = (env, argv) => {
                 shared: {
                     ...sharedModuleFederationConfig,
                     '@yostack/sdk-admin-react': {
-                        requiredVersion: deps['@yostack/sdk-admin-react'],
                         singleton: true,
                     },
                 },
